@@ -1,45 +1,65 @@
-/* AUTH BOX */
-.auth-container {
-  width: 300px;
-  margin: 100px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  text-align: center;
+let isLogin = true;
+
+// TOGGLE LOGIN/SIGNUP
+function toggleAuth() {
+  isLogin = !isLogin;
+
+  document.getElementById("authTitle").innerText = isLogin ? "Login" : "Sign Up";
+  document.querySelector("button").innerText = isLogin ? "Login" : "Sign Up";
+  document.querySelector(".toggle").innerText =
+    isLogin ? "Don't have account? Sign up" : "Already have account? Login";
 }
 
-.auth-container input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+// SIGNUP / LOGIN
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    alert("Enter email & password");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || {};
+
+  if (isLogin) {
+    // LOGIN
+    if (users[email] && users[email] === password) {
+      localStorage.setItem("loggedInUser", email);
+      showApp();
+    } else {
+      alert("Invalid login");
+    }
+  } else {
+    // SIGNUP
+    if (users[email]) {
+      alert("User already exists");
+    } else {
+      users[email] = password;
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Signup successful! Please login.");
+      toggleAuth();
+    }
+  }
 }
 
-.auth-container button {
-  width: 100%;
-  padding: 10px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+// SHOW APP
+function showApp() {
+  document.getElementById("authBox").style.display = "none";
+  document.getElementById("app").style.display = "block";
 }
 
-.toggle {
-  margin-top: 10px;
-  color: #2563eb;
-  cursor: pointer;
+// LOGOUT
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  location.reload();
 }
 
-/* LOGOUT BUTTON */
-.logout {
-  float: right;
-  background: red;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
+// AUTO LOGIN CHECK
+window.onload = function () {
+  const user = localStorage.getItem("loggedInUser");
+
+  if (user) {
+    showApp();
+  }
+};

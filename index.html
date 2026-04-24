@@ -1,101 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>EFP | ERP for Manufacturing Unit</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="container">
-      <h1>ERP for Manufacturing Unit</h1>
-      <p class="subtitle">
-        EFP Website • Overview, modules, workflow, and benefits (Deployed on GitHub Pages)
-      </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EFP ERP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-      <nav class="nav">
-        <a href="#overview">Overview</a>
-        <a href="#modules">Modules</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#benefits">Benefits</a>
-        <a href="#tech">Tech</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+<body>
 
-    <main class="container">
-      <section id="overview" class="card">
-        <h2>Overview</h2>
-        <p>
-          This project explains an <strong>ERP (Enterprise Resource Planning)</strong> system
-          designed for a <strong>manufacturing unit</strong>. The goal is to connect different
-          departments—like purchase, inventory, production, sales, and accounts—into one system
-          so data is accurate, fast, and easy to track.
-        </p>
-      </section>
+<!-- LOGIN / SIGNUP -->
+<div id="authBox" class="auth-container">
+  <h2 id="authTitle">Login</h2>
 
-      <section id="modules" class="card">
-        <h2>ERP Modules (Main Parts)</h2>
-        <ul>
-          <li><strong>Purchase:</strong> suppliers, purchase orders (PO), material receiving (GRN)</li>
-          <li><strong>Inventory/Warehouse:</strong> stock levels, inward/outward, reorder alerts</li>
-          <li><strong>Production:</strong> BOM (Bill of Materials), work orders, machine/shift planning</li>
-          <li><strong>Quality:</strong> inspections, defect reporting, rework tracking</li>
-          <li><strong>Sales:</strong> quotations, sales orders, dispatch, delivery</li>
-          <li><strong>Accounts:</strong> invoices, payments, expenses, basic reports</li>
-          <li><strong>HR (optional):</strong> attendance, payroll, staff records</li>
-        </ul>
-      </section>
+  <input type="email" id="email" placeholder="Enter Email" />
+  <input type="password" id="password" placeholder="Enter Password" />
 
-      <section id="workflow" class="card">
-        <h2>Simple Workflow (How It Works)</h2>
-        <ol>
-          <li>Customer order comes in → <strong>Sales Order</strong> created</li>
-          <li>System checks raw material stock → if low, creates <strong>Purchase Request</strong></li>
-          <li>Materials received into warehouse → stock updated automatically</li>
-          <li><strong>Production Work Order</strong> created using BOM → material issued to shop floor</li>
-          <li>Quality check happens → pass/rework recorded</li>
-          <li>Finished goods moved to inventory → dispatch to customer</li>
-          <li>Invoice generated → payment tracked in accounts</li>
-        </ol>
-      </section>
+  <button onclick="login()">Login</button>
 
-      <section id="benefits" class="card">
-        <h2>Benefits</h2>
-        <ul>
-          <li>Reduces manual work and paper records</li>
-          <li>Real-time stock visibility (avoid shortages/overstock)</li>
-          <li>Better production planning and tracking</li>
-          <li>Improves delivery time and customer satisfaction</li>
-          <li>Clear reports for costs, sales, and productivity</li>
-        </ul>
-      </section>
+  <p onclick="toggleAuth()" class="toggle">
+    Don't have account? Sign up
+  </p>
+</div>
 
-      <section id="tech" class="card">
-        <h2>Tech / Tools Used</h2>
-        <ul>
-          <li><strong>Frontend:</strong> HTML + CSS + JavaScript</li>
-          <li><strong>Hosting:</strong> GitHub Pages</li>
-          <li><strong>Optional (if you extend):</strong> Firebase / Supabase / Node.js API</li>
-        </ul>
-        <p class="note">
-          This website is the project documentation/demo page. If you want, we can extend it into
-          a real working mini-ERP with login + database.
-        </p>
-      </section>
+<!-- MAIN APP -->
+<div id="app" style="display:none;">
 
-      <section id="contact" class="card">
-        <h2>Student Details</h2>
-        <p><strong>Name:</strong> ALOK NIDAN</p>
-        <p><strong>Email:</strong> <a href="mailto:aloknidan@gmail.com">aloknidan@gmail.com</a></p>
-        <p><strong>Project:</strong> ERP for Manufacturing Unit</p>
-      </section>
-    </main>
+<header class="container header">
+  <h1>ERP for Manufacturing Unit</h1>
+  <button onclick="logout()" class="logout">Logout</button>
+</header>
 
-    <footer class="container footer">
-      <small>© <span id="year"></span> EFP • ERP for Manufacturing Unit</small>
-    </footer>
+<main class="container">
+  <section class="card">
+    <h2>Welcome</h2>
+    <p>You are successfully logged in 🎉</p>
+  </section>
+</main>
 
-    <script src="script.js"></script>
-  </body>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
